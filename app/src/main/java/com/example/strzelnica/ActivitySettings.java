@@ -24,6 +24,7 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         ArrayAdapter aa = new ArrayAdapter(this, android.R.layout.simple_spinner_item, language);
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(aa);
+        dsfjhjd
 
     }
 
