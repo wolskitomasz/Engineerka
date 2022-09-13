@@ -6,8 +6,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MainActivity extends AppCompatActivity {
+
+    String readString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +29,32 @@ public class MainActivity extends AppCompatActivity {
         Button buttonHistory = findViewById(R.id.buttonHistory);
         Button buttonSettings = findViewById(R.id.buttonSettings);
         Button buttonClose = findViewById(R.id.buttonClose);
+
+        StringBuffer datax = new StringBuffer("");
+        try {
+            FileInputStream fIn = openFileInput ( "jezyk" ) ;
+            InputStreamReader isr = new InputStreamReader ( fIn ) ;
+            BufferedReader buffreader = new BufferedReader ( isr ) ;
+
+            String readString = buffreader.readLine ( ) ;
+            while ( readString != null ) {
+                datax.append(readString);
+                readString = buffreader.readLine ( ) ;
+            }
+
+            isr.close ( ) ;
+        } catch ( IOException ioe ) {
+            ioe.printStackTrace ( ) ;
+        }
+
+        if(datax.toString()=="Polski")
+        {
+            buttonHistory.setText("HISTORIA");
+        }
+        else
+        {
+            buttonHistory.setText("HISTORY");
+        }
 
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
