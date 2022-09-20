@@ -29,6 +29,38 @@ public class MainActivity extends AppCompatActivity {
         Button buttonSettings = findViewById(R.id.buttonSettings);
         Button buttonClose = findViewById(R.id.buttonClose);
 
+        StringBuffer datax = new StringBuffer("");
+        try {
+            FileInputStream fIn = openFileInput ( "jezyk" ) ;
+            InputStreamReader isr = new InputStreamReader ( fIn ) ;
+            BufferedReader buffreader = new BufferedReader ( isr ) ;
+
+            String readString = buffreader.readLine ( ) ;
+            while ( readString != null ) {
+                datax.append(readString);
+                readString = buffreader.readLine ( ) ;
+            }
+
+            isr.close ( ) ;
+        } catch ( IOException ioe ) {
+            ioe.printStackTrace ( ) ;
+        }
+
+        if(datax.toString().equals("Polski"))
+        {
+            buttonHistory.setText("Historia");
+            buttonSettings.setText("Ustawienia");
+            buttonClose.setText("Wyjdź");
+            buttonStart.setText("Start");
+        }
+        else
+        {
+            buttonHistory.setText("History");
+            buttonSettings.setText("Settings");
+            buttonClose.setText("Close");
+            buttonStart.setText("Start");
+        }
+
 
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,24 +92,24 @@ public class MainActivity extends AppCompatActivity {
 
         if(language == null)
             language = "Polski";
-        Toast.makeText(getApplicationContext(),language, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),language, Toast.LENGTH_LONG).show();
 
         //---set jezyk we wszystkich oknach
 
-        if(language.equals("Polski"))
-        {
-            buttonHistory.setText("Historia");
-            buttonSettings.setText("Ustawienia");
-            buttonClose.setText("Wyjdź");
-            buttonStart.setText("Start");
-        }
-        else
-        {
-            buttonHistory.setText("History");
-            buttonSettings.setText("Settings");
-            buttonClose.setText("Close");
-            buttonStart.setText("Start");
-        }
+//        if(language.equals("Polski"))
+//        {
+//            buttonHistory.setText("Historia");
+//            buttonSettings.setText("Ustawienia");
+//            buttonClose.setText("Wyjdź");
+//            buttonStart.setText("Start");
+//        }
+//        else
+//        {
+//            buttonHistory.setText("History");
+//            buttonSettings.setText("Settings");
+//            buttonClose.setText("Close");
+//            buttonStart.setText("Start");
+//        }
 
         //
         //
