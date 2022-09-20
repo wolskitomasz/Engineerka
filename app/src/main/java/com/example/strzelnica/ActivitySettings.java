@@ -17,8 +17,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ActivitySettings extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    String[] language = {"Polski", "Angielski"};
+    public String[] language = {"Polski", "Angielski"};
 
+
+    LayoutInflater inflater = getLayoutInflater();
+    View view = inflater.inflate(R.layout.activity_main, null);
+    Button buttonHist = (Button) view.findViewById(R.id.buttonHistory);
+
+    //---polaczenie z nowa klasa
+    Intent myIntent = new Intent(this, MainActivity.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,8 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ActivitySettings.this, MainActivity.class));
+                //---wyslanie wartosci do innych klas
+                myIntent.putExtra("aa", aa.toString());
             }
         });
 
@@ -65,6 +74,7 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
