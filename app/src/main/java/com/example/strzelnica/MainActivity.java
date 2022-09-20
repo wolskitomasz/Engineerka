@@ -56,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //---jezyk z ustawien
-        String language = getIntent().getStringExtra("test");
+        String language = getIntent().getStringExtra("languageSetter");
 
         if(language == null)
             language = "Polski";
-        //Toast.makeText(getApplicationContext(),language, Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),language, Toast.LENGTH_LONG).show();
 
         //---set jezyk we wszystkich oknach
 
@@ -78,5 +78,7 @@ public class MainActivity extends AppCompatActivity {
             buttonClose.setText("Close");
             buttonStart.setText("Start");
         }
+
+
     }
 }
