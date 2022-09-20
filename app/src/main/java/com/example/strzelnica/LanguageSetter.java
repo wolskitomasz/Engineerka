@@ -21,7 +21,7 @@ public class LanguageSetter extends ActivitySettings{
 //    Button buttonSetts = (Button) view.findViewById(R.id.buttonSettings);
 //    Button buttonStart = (Button) view.findViewById(R.id.buttonStart);
 //    Button buttonClose = (Button) view.findViewById(R.id.buttonClose);
-//
+
 //    //---set jezyk we wszystkich oknach
 //    if (language == "Polski")
 //    {

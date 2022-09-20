@@ -18,14 +18,9 @@ import java.io.IOException;
 
 public class ActivitySettings extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public String[] language = {"Polski", "Angielski"};
+    String languageSetter="Polski";
 
 
-    LayoutInflater inflater = getLayoutInflater();
-    View view = inflater.inflate(R.layout.activity_main, null);
-    Button buttonHist = (Button) view.findViewById(R.id.buttonHistory);
-
-    //---polaczenie z nowa klasa
-    Intent myIntent = new Intent(this, MainActivity.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +28,9 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_settings);
 
         this.setTitle("STRZELNICA");
+
+        //---polaczenie z nowa klasa
+        Intent myIntent = new Intent(ActivitySettings.this, MainActivity.class);
 
         Spinner spin = (Spinner) findViewById(R.id.spinner);
         spin.setOnItemSelectedListener(this);
@@ -45,9 +43,9 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ActivitySettings.this, MainActivity.class));
                 //---wyslanie wartosci do innych klas
-                myIntent.putExtra("aa", aa.toString());
+                myIntent.putExtra("languageSetter", languageSetter.toString());
+                startActivity(myIntent);
             }
         });
 
@@ -55,25 +53,7 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String test = language[i];
-
-        //Toast.makeText(getApplicationContext(), test, Toast.LENGTH_LONG).show();
-        FileOutputStream fileOutputStream = null;
-        try {
-            fileOutputStream = openFileOutput("jezyk", MODE_PRIVATE);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            fileOutputStream.write(test.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            fileOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        languageSetter = language[i];
 
     }
 
