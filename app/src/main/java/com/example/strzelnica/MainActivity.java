@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -80,5 +81,26 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+//        //---jezyk z ustawien
+//        Intent intent = getIntent();
+//        String language = intent.getStringExtra("aa");
+//        //String language = getApplicationContext().getString();
+//
+//        //---set jezyk we wszystkich oknach
+//        if (language == "Polski")
+//        {
+//            buttonHistory.setText("Historia");
+//            buttonSettings.setText("Ustawienia");
+//            buttonClose.setText("Wyjdź");
+//            buttonStart.setText("Start");
+//        }
+//        else
+//        {
+//            buttonHistory.setText("History");
+//            buttonSettings.setText("Settings");
+//            buttonClose.setText("Close");
+//            buttonStart.setText("Start");
+//        }
     }
 }
