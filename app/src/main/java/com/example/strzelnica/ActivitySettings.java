@@ -20,8 +20,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class ActivitySettings extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    //Deklaracja zmiennych
     public String[] language = {"Polski", "Angielski"};
-    String languageSetter="Polski";
+    String languageSetter;
 
 
 
@@ -31,9 +33,10 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_settings);
 
         this.setTitle("STRZELNICA");
-
+        //Utworzenie instancji dla przycisku
         Button button = findViewById(R.id.buttonSave);
 
+        //Sprawdzenie języka i jego ewentualna zmiana
         StringBuffer datax = new StringBuffer("");
         try {
             FileInputStream fIn = openFileInput ( "jezyk" ) ;
@@ -60,9 +63,7 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
             button.setText("SAVE");
         }
 
-        //---polaczenie z nowa klasa
-        Intent myIntent = new Intent(ActivitySettings.this, MainActivity.class);
-
+        //Utworzenie i wypełnienie spinera
         Spinner spin = (Spinner) findViewById(R.id.spinner);
         spin.setOnItemSelectedListener(this);
 
@@ -70,13 +71,10 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(aa);
 
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //---wyslanie wartosci do innych klas
-                //myIntent.putExtra("languageSetter", languageSetter.toString());
-                startActivity(myIntent);
+                startActivity(new Intent(ActivitySettings.this, MainActivity.class));
             }
         });
 
@@ -84,9 +82,9 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        //Zapis wybranego języka do pliku tekstowego
         languageSetter = language[i];
 
-        //Toast.makeText(getApplicationContext(), test, Toast.LENGTH_LONG).show();
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = openFileOutput("jezyk", MODE_PRIVATE);

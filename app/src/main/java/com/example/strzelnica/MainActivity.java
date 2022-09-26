@@ -24,11 +24,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.setTitle("STRZELNICA");
 
+        //Utworzenie instancji dla przycisków
         Button buttonStart = findViewById(R.id.buttonStart);
         Button buttonHistory = findViewById(R.id.buttonHistory);
         Button buttonSettings = findViewById(R.id.buttonSettings);
         Button buttonClose = findViewById(R.id.buttonClose);
 
+        //Sprawdzenie języka i jego ewentualna zmiana
         StringBuffer datax = new StringBuffer("");
         try {
             FileInputStream fIn = openFileInput ( "jezyk" ) ;
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             buttonStart.setText("Start");
         }
 
-
+        //Poszczególne akcje dla przycisków
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,38 +88,5 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        //---jezyk z ustawien
-        String language = getIntent().getStringExtra("languageSetter");
-
-        if(language == null)
-            language = "Polski";
-        //Toast.makeText(getApplicationContext(),language, Toast.LENGTH_LONG).show();
-
-        //---set jezyk we wszystkich oknach
-
-//        if(language.equals("Polski"))
-//        {
-//            buttonHistory.setText("Historia");
-//            buttonSettings.setText("Ustawienia");
-//            buttonClose.setText("Wyjdź");
-//            buttonStart.setText("Start");
-//        }
-//        else
-//        {
-//            buttonHistory.setText("History");
-//            buttonSettings.setText("Settings");
-//            buttonClose.setText("Close");
-//            buttonStart.setText("Start");
-//        }
-
-        //
-        //
-        //
-        // COMMIT TEST
-        //
-        //
-        //
-
     }
 }
