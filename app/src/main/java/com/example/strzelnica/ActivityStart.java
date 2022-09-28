@@ -9,9 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,12 +25,54 @@ public class ActivityStart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+
         //Utworzenie instancji dla przycisku i pól tekstowych
         Button buttonNext = findViewById(R.id.buttonNext);
 
         EditText editTextName = findViewById(R.id.editTextName);
         EditText editTextSurname = findViewById(R.id.editTextSurname);
         EditText editTextAge = findViewById(R.id.editTextAge);
+
+        TextView txtName = findViewById(R.id.textView3);
+        TextView txtSur = findViewById(R.id.textView7);
+        TextView txtAge =  findViewById(R.id.textView8);
+        TextView txtLabel =  findViewById(R.id.textView2);
+
+        //ustawienia jezyka
+        //Sprawdzenie języka i jego ewentualna zmiana
+        StringBuffer datax = new StringBuffer("");
+        try {
+            FileInputStream fIn = openFileInput ( "jezyk" ) ;
+            InputStreamReader isr = new InputStreamReader ( fIn ) ;
+            BufferedReader buffreader = new BufferedReader ( isr ) ;
+
+            String readString = buffreader.readLine ( ) ;
+            while ( readString != null ) {
+                datax.append(readString);
+                readString = buffreader.readLine ( ) ;
+            }
+
+            isr.close ( ) ;
+        } catch ( IOException ioe ) {
+            ioe.printStackTrace ( ) ;
+        }
+
+        if(datax.toString().equals("Polski"))
+        {
+            txtName.setText("Imię");
+            txtSur.setText("Nazwisko");
+            txtAge.setText("Wiek");
+            buttonNext.setText("ZAPISZ");
+            txtLabel.setText("PRZYGOTOWANIE");
+        }
+        else
+        {
+            txtName.setText("Name");
+            txtSur.setText("Surname");
+            txtAge.setText("Age");
+            buttonNext.setText("SAVE");
+            txtLabel.setText("PREPARE");
+        }
 
         //Utworzenie pliku tekstowego z danymi osoby rozpoczynającej grę
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +108,8 @@ public class ActivityStart extends AppCompatActivity {
                 startActivity(new Intent(ActivityStart.this, ActivityPrepare.class));
             }
         });
+
+
 
     }
 }

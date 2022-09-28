@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -24,6 +25,7 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
     //Deklaracja zmiennych
     public String[] language = {"Polski", "Angielski"};
     String languageSetter;
+    TextView txtView = findViewById(R.id.textView;
 
 
 
@@ -57,10 +59,12 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         if(datax.toString().equals("Polski"))
         {
             button.setText("ZAPISZ");
+            txtView.setText("USTAWIENIA");
         }
         else
         {
             button.setText("SAVE");
+            txtView.setText("SETTINGS");
         }
 
         //Utworzenie i wypełnienie spinera
