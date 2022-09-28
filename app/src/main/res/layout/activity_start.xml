@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="PRZYGOTOWANIE"
+            android:textColor="#000000"
             android:textSize="36sp" />
 
         <LinearLayout
@@ -38,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Imię :"
+                android:textColor="#000000"
                 android:textSize="18sp" />
 
             <EditText
@@ -47,7 +49,8 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:text="Name" />
+                android:text="Name"
+                android:textColor="#B5B2B2" />
 
         </LinearLayout>
 
@@ -62,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Nazwisko:"
+                android:textColor="#000000"
                 android:textSize="18sp" />
 
             <EditText
@@ -72,7 +76,8 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:text="Surname" />
+                android:text="Surname"
+                android:textColor="#B5B2B2" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Wiek :"
+                android:textColor="#000000"
                 android:textSize="18sp" />
 
             <EditText
@@ -96,7 +102,8 @@
                 android:ems="10"
                 android:inputType="numberSigned"
                 android:minHeight="48dp"
-                android:text="Age" />
+                android:text="Age"
+                android:textColor="#B5B2B2" />
         </LinearLayout>
 
         <Button

@@ -4,14 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -23,20 +23,21 @@ import java.io.InputStreamReader;
 public class ActivitySettings extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     //Deklaracja zmiennych
-    public String[] language = {"Polski", "Angielski"};
+    public String[] language = {"Polski", "English"};
     String languageSetter;
-    TextView txtView = findViewById(R.id.textView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+
+
         this.setTitle("STRZELNICA");
         //Utworzenie instancji dla przycisku
         Button button = findViewById(R.id.buttonSave);
+        TextView textView = findViewById(R.id.textViewTitle);
+        TextView textView2 = findViewById(R.id.textView4);
 
         //Sprawdzenie języka i jego ewentualna zmiana
         StringBuffer datax = new StringBuffer("");
@@ -59,12 +60,18 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         if(datax.toString().equals("Polski"))
         {
             button.setText("ZAPISZ");
-            txtView.setText("USTAWIENIA");
+            textView.setText("USTAWIENIA");
+            textView2.setText("Język");
+            language[0] = "Polski";
+            language[1] = "English";
         }
         else
         {
             button.setText("SAVE");
-            txtView.setText("SETTINGS");
+            textView.setText("SETTINGS");
+            textView2.setText("Language");
+            language[0] = "English";
+            language[1] = "Polski";
         }
 
         //Utworzenie i wypełnienie spinera

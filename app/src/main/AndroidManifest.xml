@@ -29,7 +29,7 @@
             android:name=".ActivityHistory"
             android:exported="false" />
         <activity
-            android:name=".test"
+            android:name=".ActivityCameraSettings"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

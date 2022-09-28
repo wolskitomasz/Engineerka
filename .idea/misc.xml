@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Komuszek/AndroidStudioProjects/strzelnica/app/src/main/res/layout/activity_camerasettings.xml" value="0.35778985507246375" />
         <entry key="..\:/Users/Komuszek/AndroidStudioProjects/strzelnica/app/src/main/res/layout/activity_history.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/Komuszek/AndroidStudioProjects/strzelnica/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Komuszek/AndroidStudioProjects/strzelnica/app/src/main/res/layout/activity_settings.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Komuszek/AndroidStudioProjects/strzelnica/app/src/main/res/layout/activity_prepare.xml" value="0.35778985507246375" />
+        <entry key="..\:/Users/Komuszek/AndroidStudioProjects/strzelnica/app/src/main/res/layout/activity_settings.xml" value="0.2328966521106259" />
         <entry key="..\:/Users/Komuszek/AndroidStudioProjects/strzelnica/app/src/main/res/layout/activity_start.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/twtom/StudioProjects/Engineerka2/app/src/main/res/layout/activity_history.xml" value="0.22239583333333332" />
         <entry key="..\:/Users/twtom/StudioProjects/Engineerka2/app/src/main/res/layout/activity_main.xml" value="0.22239583333333332" />

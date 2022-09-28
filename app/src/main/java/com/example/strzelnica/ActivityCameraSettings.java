@@ -1,11 +1,8 @@
 package com.example.strzelnica;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Camera;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -18,9 +15,13 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import java.util.Arrays;
 
-public class test extends AppCompatActivity {
+public class ActivityCameraSettings extends AppCompatActivity {
 
     private TextureView textureView;
     private CameraManager cameraManager;
@@ -32,12 +33,11 @@ public class test extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
+        setContentView(R.layout.activity_camerasettings);
 
         textureView = findViewById(R.id.textureView2);
         cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
         openCamera();
-
     }
 
     private CameraDevice.StateCallback myStateCallBack = new CameraDevice.StateCallback() {
@@ -61,8 +61,7 @@ public class test extends AppCompatActivity {
     private void openCamera() {
         try {
             myCameraID = cameraManager.getCameraIdList()[0];
-
-            ActivityCompat.requestPermissions(test.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
+            ActivityCompat.requestPermissions(ActivityCameraSettings.this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
 
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 return;
