@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, ActivityStart.class));
+                startActivity(new Intent(MainActivity.this, ActivityUser.class));
             }
         });
         buttonHistory.setOnClickListener(new View.OnClickListener() {

@@ -20,21 +20,48 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextureView
-            android:id="@+id/textureView2"
+            android:id="@+id/textureViewCamera"
             android:layout_width="match_parent"
             android:layout_height="500dp" />
-
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:onClick="cameraPreview"
-            android:text="Button" />
+            android:text="Rozumiem" />
+
+        <Button
+            android:id="@+id/buttonStart2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="START"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/textViewTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textViewStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-350dp"
+            android:gravity="center"
+            android:text="Aby rozpocząć grę naciśnij poniższy przycisk"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Pamiętaj, że kamera musi obejmować planszę" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

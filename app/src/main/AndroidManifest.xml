@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Strzelnica"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityUser"
+            android:exported="false" />
+        <activity
             android:name=".ActivityPrepare"
             android:exported="false" />
         <activity

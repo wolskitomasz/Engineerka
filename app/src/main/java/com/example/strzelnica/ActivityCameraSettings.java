@@ -2,7 +2,6 @@ package com.example.strzelnica;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.graphics.Camera;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
@@ -11,9 +10,13 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,14 +33,50 @@ public class ActivityCameraSettings extends AppCompatActivity {
     private CaptureRequest.Builder myCaptureRequestBuilder;
     private CameraCaptureSession myCameraCaptureSession;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camerasettings);
 
-        textureView = findViewById(R.id.textureView2);
+        textureView = findViewById(R.id.textureViewCamera);
         cameraManager = (CameraManager) getSystemService(CAMERA_SERVICE);
         openCamera();
+
+        Button buttonStart = findViewById(R.id.buttonStart2);
+        TextView textViewTime = findViewById(R.id.textViewTime);
+
+        buttonStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                buttonStart.setVisibility(view.GONE);
+                new CountDownTimer(10000, 1000) {
+
+                    public void onTick(long millisUntilFinished) {
+                        textViewTime.setText("Start za : " + millisUntilFinished / 1000);
+                        //here you can have your logic to set text to edittext
+                    }
+
+                    public void onFinish() {
+                        textViewTime.setText("START");
+                        new CountDownTimer(5000, 1000) {
+
+                            public void onTick(long millisUntilFinished) {
+                            }
+
+                            public void onFinish() {
+                                textViewTime.setVisibility(view.GONE);
+                            }
+
+                        }.start();
+                    }
+
+                }.start();
+            }
+        });
+
+
     }
 
     private CameraDevice.StateCallback myStateCallBack = new CameraDevice.StateCallback() {
@@ -74,8 +113,21 @@ public class ActivityCameraSettings extends AppCompatActivity {
     }
 
     public void cameraPreview(View view){
+        TextView textViewStart = findViewById(R.id.textViewStart);
+        TextView textViewInfo = findViewById(R.id.textViewInfo);
+        Button button = findViewById(R.id.button);
+        Button buttonStart = findViewById(R.id.buttonStart2);
+
+        textViewStart.setVisibility(view.GONE);
+        textViewInfo.setVisibility(view.GONE);
+        button.setVisibility(view.GONE);
+        buttonStart.setVisibility(view.VISIBLE);
+
+
         SurfaceTexture surfaceTexture = textureView.getSurfaceTexture();
         Surface surface = new Surface(surfaceTexture);
+
+
 
         try {
             myCaptureRequestBuilder = myCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
