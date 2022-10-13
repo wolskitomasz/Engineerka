@@ -14,3 +14,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "strzelnica"
 include ':app'
+include ':libraries:opencv'
