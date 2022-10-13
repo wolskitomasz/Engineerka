@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
-import android.widget.Toast;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -58,8 +57,9 @@ public class test_camera extends AppCompatActivity implements CameraBridgeViewBa
     @Override
     public void onCameraViewStarted(int width, int height) {
         mRGBA = new Mat(height, width, CvType.CV_8UC4);
-        mat1 = new Mat(height, width, CvType.CV_16UC4);
-        mat2 = new Mat(height, width, CvType.CV_16UC4);
+
+        mat1 = new Mat(height, width, CvType.CV_8UC4);
+        mat2 = new Mat(height, width, CvType.CV_8UC4);
     }
 
     @Override
@@ -69,11 +69,23 @@ public class test_camera extends AppCompatActivity implements CameraBridgeViewBa
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        mRGBA = inputFrame.rgba();
-        mRGBAT = mRGBA.t();
-        Core.flip(mRGBA.t(), mRGBAT, 1);
-        Imgproc.resize(mRGBAT, mRGBAT, mRGBA.size());
-        return mRGBAT;
+//        mRGBA = inputFrame.rgba();
+//        mRGBAT = mRGBA.t();
+//        Core.flip(mRGBA.t(), mRGBAT, 1);
+//        Imgproc.resize(mRGBAT, mRGBAT, mRGBA.size());
+//        return mRGBAT;
+
+        Mat src = inputFrame.rgba();
+
+
+        Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV);
+        Core.inRange(mat1,new Scalar(160,50,50),new Scalar(180,255,255),mat2);
+        Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
+
+        Imgproc.circle(src, mmG.maxLoc, 30, new Scalar(0,255,0), 5, Imgproc.LINE_AA);
+
+        return src;
+
     }
 
     @Override
