@@ -21,6 +21,7 @@ public class test_camera extends AppCompatActivity implements CameraBridgeViewBa
     JavaCameraView javaCameraView;
     Mat mRGBA, mRGBAT;
     Mat mat1, mat2;
+    Scalar scalarLow, scalarHigh;
 
 
     BaseLoaderCallback baseLoaderCallback = new BaseLoaderCallback(test_camera.this) {
@@ -47,19 +48,26 @@ public class test_camera extends AppCompatActivity implements CameraBridgeViewBa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_camera);
+        OpenCVLoader.initDebug();
 
         javaCameraView = findViewById(R.id.javaCameraView);
-        javaCameraView.setVisibility(SurfaceView.VISIBLE);
+
+        javaCameraView.setCameraIndex(0);
+        scalarLow = new Scalar(0,150,50);
+        scalarHigh = new Scalar(10,255,255);
+
+//        javaCameraView.setVisibility(SurfaceView.VISIBLE);
         javaCameraView.setCvCameraViewListener(test_camera.this);
+        javaCameraView.enableView();
 
     }
 
     @Override
     public void onCameraViewStarted(int width, int height) {
-        mRGBA = new Mat(height, width, CvType.CV_8UC4);
+//        mRGBA = new Mat(height, width, CvType.CV_8UC4);
 
-        mat1 = new Mat(height, width, CvType.CV_8UC4);
-        mat2 = new Mat(height, width, CvType.CV_8UC4);
+        mat1 = new Mat(width, height, CvType.CV_16UC4);
+        mat2 = new Mat(width, height, CvType.CV_16UC4);
     }
 
     @Override
@@ -75,11 +83,11 @@ public class test_camera extends AppCompatActivity implements CameraBridgeViewBa
 //        Imgproc.resize(mRGBAT, mRGBAT, mRGBA.size());
 //        return mRGBAT;
 
+
         Mat src = inputFrame.rgba();
 
-
         Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV);
-        Core.inRange(mat1,new Scalar(160,50,50),new Scalar(180,255,255),mat2);
+        Core.inRange(mat1,scalarLow,scalarHigh,mat2);
         Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
 
         Imgproc.circle(src, mmG.maxLoc, 30, new Scalar(0,255,0), 5, Imgproc.LINE_AA);
