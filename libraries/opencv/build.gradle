@@ -3,6 +3,7 @@ apply plugin: 'android-library'
 buildscript {
     repositories {
         mavenCentral()
+        google()
     }
     dependencies {
         //noinspection GradlePluginVersion
