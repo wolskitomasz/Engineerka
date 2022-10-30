@@ -109,7 +109,7 @@ public class ActivityPrepare extends AppCompatActivity {
         buttonStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ActivityPrepare.this, ActivityCameraSettings.class));
+                startActivity(new Intent(ActivityPrepare.this, ActivityCamera.class));
             }
         });
 
