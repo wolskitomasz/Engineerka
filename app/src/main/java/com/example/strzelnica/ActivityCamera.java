@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.material.slider.Slider;
 
@@ -20,6 +21,8 @@ import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
+
+import java.util.concurrent.TimeUnit;
 
 public class ActivityCamera extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
 
@@ -84,27 +87,38 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
 
-        src = inputFrame.rgba();
+        try {
+            src = inputFrame.rgba();
 
-        Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV);
+            Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV);
 
-        Core.inRange(mat1,scalarLow,scalarHigh,mat2);
+            Core.inRange(mat1, scalarLow, scalarHigh, mat2);
 
-        Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
+            Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
 
-        Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0,0,255), 5, Imgproc.LINE_AA);
+            Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
 
-        slider = findViewById(R.id.slider);
-        int brightness = (int) slider.getValue();
+            slider = findViewById(R.id.slider);
+            int brightness = (int) slider.getValue();
 
-        src.convertTo(src,-1,1,brightness);
+            src.convertTo(src, -1, 1, brightness);
+
+            Thread.sleep(3000);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+        }
 
         return src;
 
     }
 
+
+
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
         super.onPointerCaptureChanged(hasCapture);
     }
 
