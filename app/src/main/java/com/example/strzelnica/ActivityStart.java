@@ -71,6 +71,9 @@ public class ActivityStart extends AppCompatActivity {
             txtAge.setText("Wiek");
             buttonNext.setText("ZAPISZ");
             txtLabel.setText("PRZYGOTOWANIE");
+            editTextName.setText("IMIĘ");
+            editTextSurname.setText("NAZWISKO");
+            editTextAge.setText("WIEK");
         }
         else
         {
@@ -79,6 +82,9 @@ public class ActivityStart extends AppCompatActivity {
             txtAge.setText("Age");
             buttonNext.setText("SAVE");
             txtLabel.setText("PREPARE");
+            editTextName.setText("NAME");
+            editTextSurname.setText("SURNAME");
+            editTextAge.setText("AGE");
         }
 
         //Sprawdzenie czy istnieje plik "player"

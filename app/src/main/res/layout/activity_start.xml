@@ -49,7 +49,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:text="Name"
+                android:text="IMIĘ"
                 android:textColor="#B5B2B2" />
 
         </LinearLayout>
@@ -76,7 +76,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
-                android:text="Surname"
+                android:text="NAZWISKO"
                 android:textColor="#B5B2B2" />
         </LinearLayout>
 
@@ -102,7 +102,7 @@
                 android:ems="10"
                 android:inputType="numberSigned"
                 android:minHeight="48dp"
-                android:text="Age"
+                android:text="WIEK"
                 android:textColor="#B5B2B2" />
         </LinearLayout>
 
