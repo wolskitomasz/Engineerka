@@ -21,10 +21,12 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
             android:layout_marginBottom="50dp"
-            app:srcCompat="@drawable/images" />
+            app:srcCompat="@drawable/laser" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,6 +42,7 @@
                 android:layout_height="150dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:backgroundTint="#704CAF50"
                 android:fontFamily="sans-serif-black"
                 android:insetTop="6dp"
                 android:text="start"
@@ -51,6 +54,7 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:backgroundTint="#836E6A6A"
                 android:fontFamily="sans-serif-black"
                 android:insetTop="6dp"
                 android:text="historia"
@@ -71,6 +75,7 @@
                 android:layout_height="150dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:backgroundTint="#863F51B5"
                 android:fontFamily="sans-serif-black"
                 android:insetTop="6dp"
                 android:text="ustawienia"
@@ -82,6 +87,7 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:backgroundTint="#63FF0000"
                 android:fontFamily="sans-serif-black"
                 android:insetTop="6dp"
                 android:text="wyjście"

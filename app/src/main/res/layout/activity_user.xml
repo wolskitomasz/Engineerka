@@ -6,40 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".ActivityUser">
 
-    <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="Zaloguj się!"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="UŻYTKOWNIK"
-            android:textColor="#000000"
-            android:textSize="36sp" />
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:text="Jeśli nie posiadasz konta zagraj jako gość"
+        android:textColor="#000000"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="@id/textView11"
+        app:layout_constraintEnd_toEndOf="@id/textView11"
+        app:layout_constraintStart_toStartOf="@id/textView11"
+        app:layout_constraintTop_toTopOf="@id/textView11">
 
         <Button
             android:id="@+id/buttonGuest"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="175sp"
-            android:layout_marginBottom="50sp"
-            android:text="GOSC" />
+            android:layout_height="125dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="#63087E00"
+            android:fontFamily="sans-serif-black"
+            android:text="GOŚĆ"
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ZALOGUJ" />
+            android:layout_height="125dp"
+            android:layout_weight="1"
+            android:backgroundTint="#86214CE8"
+            android:fontFamily="sans-serif-black"
+            android:text="ZALOGUJ"
+            android:textSize="20sp" />
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
