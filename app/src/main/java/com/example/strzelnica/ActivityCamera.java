@@ -1,8 +1,5 @@
 package com.example.strzelnica;
 
-import static org.opencv.core.Core.ROTATE_90_CLOCKWISE;
-import static org.opencv.core.Core.transpose;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -17,7 +14,6 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
