@@ -2,8 +2,11 @@ package com.example.strzelnica;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.slider.Slider;
@@ -15,6 +18,7 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
@@ -27,6 +31,9 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     Mat mat1, mat2;
     Scalar scalarLow, scalarHigh;
     Mat src;
+  //  TextView mTextField = findViewById(R.id.textView11);
+    //final MediaPlayer mp = MediaPlayer.create(this, R.raw.sample);
+
 
 
     BaseLoaderCallback baseLoaderCallback = new BaseLoaderCallback(ActivityCamera.this) {
@@ -83,7 +90,6 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
 
-        try {
             src = inputFrame.rgba();
 
             Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV);
@@ -99,14 +105,18 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
             src.convertTo(src, -1, 1, brightness);
 
-            Thread.sleep(3000);
-        }
-        catch (Exception e)
+           Point punkt = mmG.maxLoc;
+        if(punkt.x!=0 &&punkt.y !=0)
         {
-            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+            System.out.println("DUPA");
+           // mp.start();
         }
-
         return src;
+
+
+
+
+
 
     }
 
