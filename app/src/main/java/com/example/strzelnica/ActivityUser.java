@@ -41,19 +41,19 @@ public class ActivityUser extends AppCompatActivity {
 
         Button buttonGuest = findViewById(R.id.buttonGuest);
         Button buttonLogin = findViewById(R.id.buttonLogin);
-        TextView textView = findViewById(R.id.textView);
+       // TextView textView = findViewById(R.id.textView);
 
         //zmiana jezyka
         if(datax2.toString().equals("Polski"))
         {
-            textView.setText("UŻYTKOWNIK");
+         //   textView.setText("UŻYTKOWNIK");
             buttonGuest.setText("GOŚĆ");
             buttonLogin.setText("ZALOGUJ");
 
         }
         else
         {
-            textView.setText("USER");
+           // textView.setText("USER");
             buttonGuest.setText("GUEST");
             buttonLogin.setText("LOG IN");
         }
