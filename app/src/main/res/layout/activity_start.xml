@@ -31,13 +31,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.5"
+                android:gravity="center"
                 android:text="Imię :"
                 android:textColor="#000000"
                 android:textSize="18sp" />
@@ -47,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:text="IMIĘ"
@@ -64,6 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Nazwisko:"
                 android:textColor="#000000"
                 android:textSize="18sp" />
@@ -74,6 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 android:text="NAZWISKO"
@@ -90,6 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Wiek :"
                 android:textColor="#000000"
                 android:textSize="18sp" />
@@ -100,18 +106,42 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:ems="10"
+                android:gravity="center"
                 android:inputType="numberSigned"
                 android:minHeight="48dp"
                 android:text="WIEK"
                 android:textColor="#B5B2B2" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/buttonNext"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:text="ZAPISZ" />
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#66D60000"
+                android:text="Wróć"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/buttonNext"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:backgroundTint="#7A0F8103"
+                android:text="ZAPISZ"
+                android:textSize="18sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

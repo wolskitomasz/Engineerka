@@ -86,26 +86,31 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/buttonCorrect"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_height="125dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
+                android:backgroundTint="#75B10303"
                 android:text="POPRAW"
+                android:textSize="18sp"
                 tools:ignore="DuplicateSpeakableTextCheck" />
 
             <Button
                 android:id="@+id/buttonStartGame"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
+                android:layout_height="125dp"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="START" />
+                android:backgroundTint="#722BB304"
+                android:text="START"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>
