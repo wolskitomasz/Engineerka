@@ -65,8 +65,10 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
         javaCameraView = findViewById(R.id.javaCameraView);
 
         javaCameraView.setCameraIndex(0);
+
         scalarLow = new Scalar(136,87,111);
         scalarHigh = new Scalar(180,255,255);
+
 
 //        javaCameraView.setVisibility(SurfaceView.VISIBLE);
         javaCameraView.setCvCameraViewListener(ActivityCamera.this);
@@ -98,19 +100,21 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
             Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
 
-            Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
+//            Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
 
-            slider = findViewById(R.id.slider);
-            int brightness = (int) slider.getValue();
 
-            src.convertTo(src, -1, 1, brightness);
 
            Point punkt = mmG.maxLoc;
-        if(punkt.x!=0 &&punkt.y !=0)
-        {
-            System.out.println("DUPA");
-           // mp.start();
-        }
+           if(punkt.x > 200.0 && punkt.x < 800.0)
+           {
+               Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
+               System.out.println("X"+punkt.x);
+               System.out.println("Y"+punkt.y);
+           }
+        slider = findViewById(R.id.slider);
+        int brightness = (int) slider.getValue();
+
+        src.convertTo(src, -1, 1, brightness);
         return src;
 
 
