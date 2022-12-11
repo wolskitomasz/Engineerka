@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,9 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     Mat mat1, mat2;
     Scalar scalarLow, scalarHigh;
     Mat src;
-  //  TextView mTextField = findViewById(R.id.textView11);
+    MediaPlayer player;
+    CountDownTimer countDownTimer=null;
+    //  TextView mTextField = findViewById(R.id.textView11);
     //final MediaPlayer mp = MediaPlayer.create(this, R.raw.sample);
 
 
@@ -61,6 +64,8 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
         OpenCVLoader.initDebug();
+
+
 
         javaCameraView = findViewById(R.id.javaCameraView);
 
@@ -100,28 +105,23 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
             Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
 
-//            Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
-
-
 
            Point punkt = mmG.maxLoc;
            if(punkt.x > 200.0 && punkt.x < 800.0)
            {
                Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
-               System.out.println("X"+punkt.x);
-               System.out.println("Y"+punkt.y);
+               try {
+                   Thread.sleep(5000);
+               } catch (InterruptedException e) {
+                   e.printStackTrace();
+               }
+               play();
            }
         slider = findViewById(R.id.slider);
         int brightness = (int) slider.getValue();
 
         src.convertTo(src, -1, 1, brightness);
         return src;
-
-
-
-
-
-
     }
 
 
@@ -167,5 +167,14 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
             Log.d("OpenCV", "OpenCV loaded Successfully!");
             baseLoaderCallback.onManagerConnected(BaseLoaderCallback.SUCCESS);
         }
+    }
+
+    public void play()
+    {
+        if(player == null)
+        {
+            player = MediaPlayer.create(this, R.raw.sample);
+        }
+        player.start();
     }
 }
