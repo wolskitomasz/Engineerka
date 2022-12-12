@@ -32,6 +32,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     Mat mat1, mat2;
     Scalar scalarLow, scalarHigh;
     Mat src;
+//    Mat mrgba;
     MediaPlayer player;
     CountDownTimer countDownTimer=null;
     //  TextView mTextField = findViewById(R.id.textView11);
@@ -97,6 +98,16 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
 
+//        rysowanie kwadratu
+//        mrgba = inputFrame.rgba();
+//        int w = mrgba.width();
+//        int h = mrgba.height();
+//        int w_rect = w*3/4; // or 640
+//        int h_rect = h*3/4; // or 480
+//
+//        Imgproc.rectangle(mrgba, new Point( (w-w_rect)/2, (h-h_rect)/2 ), new Point(
+//                        (w+w_rect)/2, (h+h_rect)/2 ), new Scalar( 255, 0, 0 ), 5);
+
             src = inputFrame.rgba();
 
             Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV);
@@ -116,6 +127,8 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
                    e.printStackTrace();
                }
                play();
+               System.out.println("KOORDYNATY X: " +punkt.x);
+               System.out.println("KOORDYNATY Y: " +punkt.y);
            }
         slider = findViewById(R.id.slider);
         int brightness = (int) slider.getValue();
