@@ -118,7 +118,8 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
 
            Point punkt = mmG.maxLoc;
-           if(punkt.x > 200.0 && punkt.x < 800.0)
+           int licznik =0;
+           if(punkt.x > 200.0 && punkt.x < 800.0 && licznik <10)
            {
                Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
                try {
@@ -129,6 +130,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
                play();
                System.out.println("KOORDYNATY X: " +punkt.x);
                System.out.println("KOORDYNATY Y: " +punkt.y);
+               licznik++;
            }
         slider = findViewById(R.id.slider);
         int brightness = (int) slider.getValue();
