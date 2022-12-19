@@ -2,9 +2,11 @@ package com.example.strzelnica;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Looper;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -22,8 +24,15 @@ import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
+
+import static xdroid.toaster.Toaster.toast;
+import static xdroid.toaster.Toaster.toastLong;
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class ActivityCamera extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
@@ -33,12 +42,14 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     Mat mat1, mat2;
     Scalar scalarLow, scalarHigh;
     Mat src;
-    Mat mrgba;
+//    Mat mrgba;
     MediaPlayer player;
+    int licznik =0;
+    FileOutputStream fileOutputStream = null;
     CountDownTimer countDownTimer=null;
     //  TextView mTextField = findViewById(R.id.textView11);
     //final MediaPlayer mp = MediaPlayer.create(this, R.raw.sample);
-    TextView textView = findViewById(R.id.textView);
+//    TextView textView = findViewById(R.id.textView);
 
 
 
@@ -68,7 +79,14 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
         setContentView(R.layout.activity_camera);
         OpenCVLoader.initDebug();
 
-
+        File dir = getFilesDir();
+        File file = new File(dir, "punkty");
+        boolean deleted = file.delete();
+        try {
+            fileOutputStream = openFileOutput("punkty", MODE_APPEND);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         javaCameraView = findViewById(R.id.javaCameraView);
 
@@ -99,16 +117,17 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
+//otwarcie pliku
 
 //        rysowanie kwadratu
-        mrgba = inputFrame.rgba();
-        int w = mrgba.width();
-        int h = mrgba.height();
-        int w_rect = w*3/4; // or 640
-        int h_rect = h*3/4; // or 480
+//        mrgba = inputFrame.rgba();
+//        int w = mrgba.width();
+//        int h = mrgba.height();
+//        int w_rect = w*3/4; // or 640
+//        int h_rect = h*3/4; // or 480
 
-        Imgproc.rectangle(mrgba, new Point( (w-w_rect)/2, (h-h_rect)/2 ), new Point(
-                        (w+w_rect)/2, (h+h_rect)/2 ), new Scalar( 255, 0, 0 ), 5);
+//        Imgproc.rectangle(mrgba, new Point( (w-w_rect)/2, (h-h_rect)/2 ), new Point(
+//                        (w+w_rect)/2, (h+h_rect)/2 ), new Scalar( 255, 0, 0 ), 5);
 
             src = inputFrame.rgba();
 
@@ -120,21 +139,44 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
 
            Point punkt = mmG.maxLoc;
-           int licznik =0;
-           if(punkt.x > 200.0 && punkt.x < 800.0 && licznik <10)
+
+           if(punkt.x > 200.0 && punkt.x < 800.0)
            {
-               Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
-               try {
-                   Thread.sleep(5000);
-               } catch (InterruptedException e) {
-                   e.printStackTrace();
+               if(licznik < 3)
+               {
+                   Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
+                   try {
+
+                       Thread.sleep(4000);
+                   } catch (InterruptedException e) {
+                       e.printStackTrace();
+                   }
+                   play();
+                   System.out.println("KOORDYNATY X: " +punkt.x);
+                   System.out.println("KOORDYNATY Y: " +punkt.y);
+                   String punktX = String.valueOf(punkt.x)  +"\r\n" ;
+                   licznik++;
+                   setText();
+                   try {
+                       fileOutputStream.write(punktX.getBytes());
+                   } catch (IOException e) {
+                       e.printStackTrace();
+                   }
+                }
+               if (licznik == 3)
+               {
+                   try {
+                       fileOutputStream.close();
+                   } catch (IOException e) {
+                       e.printStackTrace();
+                   }
+                   startActivity(new Intent(ActivityCamera.this, ActivitySummary.class));
+
                }
-               play();
-               System.out.println("KOORDYNATY X: " +punkt.x);
-               System.out.println("KOORDYNATY Y: " +punkt.y);
-               textView.setText("Pozostało "+ (10-licznik) + "strzałów.");
-               licznik++;
+
+
            }
+
         slider = findViewById(R.id.slider);
         int brightness = (int) slider.getValue();
 
@@ -194,5 +236,11 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
             player = MediaPlayer.create(this, R.raw.sample);
         }
         player.start();
+    }
+    public void setText()
+    {
+//        textView.setText("Pozostało "+ (10-licznik2) + "strzałów.");
+       // Toast.makeText(getApplicationContext(), Integer.toString(licznik), Toast.LENGTH_LONG).show();
+        toast("Pozostało " +Integer.toString(3-licznik)+" strzałów!");
     }
 }
