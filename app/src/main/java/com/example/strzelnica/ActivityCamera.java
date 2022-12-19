@@ -22,6 +22,7 @@ import org.opencv.core.Mat;
 import org.opencv.core.Point;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
+import org.w3c.dom.Text;
 
 import java.util.concurrent.TimeUnit;
 
@@ -32,11 +33,12 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     Mat mat1, mat2;
     Scalar scalarLow, scalarHigh;
     Mat src;
-//    Mat mrgba;
+    Mat mrgba;
     MediaPlayer player;
     CountDownTimer countDownTimer=null;
     //  TextView mTextField = findViewById(R.id.textView11);
     //final MediaPlayer mp = MediaPlayer.create(this, R.raw.sample);
+    TextView textView = findViewById(R.id.textView);
 
 
 
@@ -99,18 +101,18 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
 
 //        rysowanie kwadratu
-//        mrgba = inputFrame.rgba();
-//        int w = mrgba.width();
-//        int h = mrgba.height();
-//        int w_rect = w*3/4; // or 640
-//        int h_rect = h*3/4; // or 480
-//
-//        Imgproc.rectangle(mrgba, new Point( (w-w_rect)/2, (h-h_rect)/2 ), new Point(
-//                        (w+w_rect)/2, (h+h_rect)/2 ), new Scalar( 255, 0, 0 ), 5);
+        mrgba = inputFrame.rgba();
+        int w = mrgba.width();
+        int h = mrgba.height();
+        int w_rect = w*3/4; // or 640
+        int h_rect = h*3/4; // or 480
+
+        Imgproc.rectangle(mrgba, new Point( (w-w_rect)/2, (h-h_rect)/2 ), new Point(
+                        (w+w_rect)/2, (h+h_rect)/2 ), new Scalar( 255, 0, 0 ), 5);
 
             src = inputFrame.rgba();
 
-            Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV);
+            Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV) ;
 
             Core.inRange(mat1, scalarLow, scalarHigh, mat2);
 
@@ -130,6 +132,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
                play();
                System.out.println("KOORDYNATY X: " +punkt.x);
                System.out.println("KOORDYNATY Y: " +punkt.y);
+               textView.setText("Pozostało "+ (10-licznik) + "strzałów.");
                licznik++;
            }
         slider = findViewById(R.id.slider);
