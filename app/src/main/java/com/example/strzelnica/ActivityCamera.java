@@ -46,11 +46,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     MediaPlayer player;
     int licznik =0;
     FileOutputStream fileOutputStream = null;
-    CountDownTimer countDownTimer=null;
-    //  TextView mTextField = findViewById(R.id.textView11);
-    //final MediaPlayer mp = MediaPlayer.create(this, R.raw.sample);
-//    TextView textView = findViewById(R.id.textView);
-
+//    CountDownTimer countDownTimer=null;
 
 
     BaseLoaderCallback baseLoaderCallback = new BaseLoaderCallback(ActivityCamera.this) {
@@ -81,14 +77,14 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
         File dir = getFilesDir();
         File file = new File(dir, "punkty");
-        boolean deleted = file.delete();
+        file.delete();
         try {
             fileOutputStream = openFileOutput("punkty", MODE_APPEND);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        javaCameraView = findViewById(R.id.javaCameraView);
+        javaCameraView = (JavaCameraView) findViewById(R.id.javaCameraView);
 
         javaCameraView.setCameraIndex(0);
 
@@ -117,19 +113,12 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-//otwarcie pliku
-
-//        rysowanie kwadratu
-//        mrgba = inputFrame.rgba();
-//        int w = mrgba.width();
-//        int h = mrgba.height();
-//        int w_rect = w*3/4; // or 640
-//        int h_rect = h*3/4; // or 480
-
-//        Imgproc.rectangle(mrgba, new Point( (w-w_rect)/2, (h-h_rect)/2 ), new Point(
-//                        (w+w_rect)/2, (h+h_rect)/2 ), new Scalar( 255, 0, 0 ), 5);
 
             src = inputFrame.rgba();
+        int w = src.width();
+        int h = src.height();
+        int w_rect = w*3/4; // or 640
+        int h_rect = h*3/4; // or 480
 
             Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV) ;
 
@@ -140,7 +129,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
            Point punkt = mmG.maxLoc;
 
-           if(punkt.x > 200.0 && punkt.x < 800.0)
+           if(punkt.x > 100.0 && punkt.x < 100+h)
            {
                if(licznik < 3)
                {
@@ -154,7 +143,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
                    play();
                    System.out.println("KOORDYNATY X: " +punkt.x);
                    System.out.println("KOORDYNATY Y: " +punkt.y);
-                   String punktX = String.valueOf(punkt.x)  +"\r\n" ;
+                   String punktX = punkt.x  +"\r\n" ;
                    licznik++;
                    setText();
                    try {
@@ -181,6 +170,9 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
         int brightness = (int) slider.getValue();
 
         src.convertTo(src, -1, 1, brightness);
+
+        Imgproc.rectangle(src,  new Point( 100 , 0), new Point( ((h+h)/2)+100,  (h+h)/2), new Scalar( 255, 0, 0 ), 5);
+
         return src;
     }
 
