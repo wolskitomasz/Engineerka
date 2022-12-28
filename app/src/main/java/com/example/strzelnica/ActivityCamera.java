@@ -33,6 +33,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 public class ActivityCamera extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
@@ -46,6 +47,9 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     MediaPlayer player;
     int licznik =0;
     FileOutputStream fileOutputStream = null;
+    int points = 0;
+//    Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
+//    Point punkt = mmG.maxLoc;
 //    CountDownTimer countDownTimer=null;
 
 
@@ -120,14 +124,22 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
         int w_rect = w*3/4; // or 640
         int h_rect = h*3/4; // or 480
 
+        int skala = w/800;
+       // int points = 0;
+
+
             Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV) ;
 
             Core.inRange(mat1, scalarLow, scalarHigh, mat2);
 
-            Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
+        Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
+        Point punkt = mmG.maxLoc;
 
+            // wyrzucone do gory
+//            Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
 
-           Point punkt = mmG.maxLoc;
+//          wyrzucone do gory
+//           Point punkt = mmG.maxLoc;
 
            if(punkt.x > 100.0 && punkt.x < 100+h)
            {
@@ -141,24 +153,56 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
                        e.printStackTrace();
                    }
                    play();
-                   System.out.println("KOORDYNATY X: " +punkt.x);
-                   System.out.println("KOORDYNATY Y: " +punkt.y);
-                   String punktX = punkt.x  +"\r\n" ;
                    licznik++;
                    setText();
-                   try {
-                       fileOutputStream.write(punktX.getBytes());
-                   } catch (IOException e) {
-                       e.printStackTrace();
+
+                   //zliczanie punktów
+                   //10 punktow
+                   if ((punkt.y > 292.00 * skala && punkt.y < 486.00 * skala) && (punkt.x > 292.00 * skala && punkt.x < 486.00 * skala))
+                   {
+                       points+=10;
                    }
+                   //8 punktów
+                   else if ((punkt.y > 196.00 * skala && punkt.y < 581.00 * skala) && (punkt.x > 197.00 * skala && punkt.x < 582.00 * skala))
+                   {
+                       points+=8;
+                   }
+                   //4 punkty
+                   else if ((punkt.y > 102.00 * skala && punkt.y < 677.00 * skala) && (punkt.x > 431.00 * skala && punkt.x < 676.00 * skala))
+                   {
+                       points+=4;
+                   }
+                   //2 punkty
+                   else if ((punkt.y > 5.00 * skala && punkt.y < 774.00 * skala) && (punkt.x > 6.00 * skala && punkt.x < 774.00 * skala))
+                   {
+                       points+=2;
+                   }
+
+//                   System.out.println("KOORDYNATY X: " +punkt.x);
+//                   System.out.println("KOORDYNATY Y: " +punkt.y);
+//                   String punktX = punkt.x  +"\r\n" ;
+
+//                   try {
+//                       fileOutputStream.write(punktX.getBytes());
+//                   } catch (IOException e) {
+//                       e.printStackTrace();
+//                   }
+
                 }
                if (licznik == 3)
                {
                    try {
+                       fileOutputStream.write(Integer.toString(points).getBytes());
                        fileOutputStream.close();
                    } catch (IOException e) {
                        e.printStackTrace();
                    }
+
+//                   try {
+//                       fileOutputStream.close();
+//                   } catch (IOException e) {
+//                       e.printStackTrace();
+//                   }
                    startActivity(new Intent(ActivityCamera.this, ActivitySummary.class));
 
                }
@@ -235,4 +279,28 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
        // Toast.makeText(getApplicationContext(), Integer.toString(licznik), Toast.LENGTH_LONG).show();
         toast("Pozostało " +Integer.toString(3-licznik)+" strzałów!");
     }
+
+//    public void getPoints()
+//    {
+//        //10 punktow
+//        if ((punkt.y > 292.00 && punkt.y < 486.00) && (punkt.x > 292.00 && punkt.x < 486.00))
+//        {
+//            points+=10;
+//        }
+//        //8 punktów
+//        else if ((punkt.y > 196.00 && punkt.y < 581.00) && (punkt.x > 197.00 && punkt.x < 582.00))
+//        {
+//            points+=8;
+//        }
+//        //4 punkty
+//        else if ((punkt.y > 102.00 && punkt.y < 677.00) && (punkt.x > 431.00 && punkt.x < 676.00))
+//        {
+//            points+=4;
+//        }
+//        //2 punkty
+//        else if ((punkt.y > 5.00 && punkt.y < 774.00) && (punkt.x > 6.00 && punkt.x < 774.00))
+//        {
+//            points+=2;
+//        }
+//    }
 }

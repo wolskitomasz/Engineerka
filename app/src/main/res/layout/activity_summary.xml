@@ -12,9 +12,13 @@
         android:layout_height="133dp"
         android:layout_marginStart="45dp"
         android:layout_marginTop="240dp"
+        android:layout_marginEnd="37dp"
         android:layout_marginBottom="358dp"
-        android:text="Tu będzie Twój wynik"
+        android:text="0"
+        android:textAlignment="center"
+        android:textSize="96sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
