@@ -124,7 +124,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
         int w_rect = w*3/4; // or 640
         int h_rect = h*3/4; // or 480
 
-        int skala = w/800;
+        int skala = w/774;
        // int points = 0;
 
 
@@ -140,7 +140,8 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
 //          wyrzucone do gory
 //           Point punkt = mmG.maxLoc;
-
+        String punktx = String.valueOf(punkt.x * skala);
+        String punkty = String.valueOf(punkt.y * skala);
            if(punkt.x > 100.0 && punkt.x < 100+h)
            {
                if(licznik < 3)
@@ -158,28 +159,29 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
                    //zliczanie punktów
                    //10 punktow
-                   if ((punkt.y > 292.00 * skala && punkt.y < 486.00 * skala) && (punkt.x > 292.00 * skala && punkt.x < 486.00 * skala))
+                   if ((punkt.y + 100 > 292.00 * skala && punkt.y  + 100 < 486.00 * skala) && (punkt.x > 292.00 * skala && punkt.x < 486.00 * skala))
                    {
                        points+=10;
+
                    }
                    //8 punktów
-                   else if ((punkt.y > 196.00 * skala && punkt.y < 581.00 * skala) && (punkt.x > 197.00 * skala && punkt.x < 582.00 * skala))
+                   else if ((punkt.y  + 100 > 196.00 * skala && punkt.y  + 100 < 581.00 * skala) && (punkt.x > 197.00 * skala && punkt.x < 582.00 * skala))
                    {
                        points+=8;
                    }
                    //4 punkty
-                   else if ((punkt.y > 102.00 * skala && punkt.y < 677.00 * skala) && (punkt.x > 431.00 * skala && punkt.x < 676.00 * skala))
+                   else if ((punkt.y  + 100 > 102.00 * skala && punkt.y  + 100 < 677.00 * skala) && (punkt.x > 431.00 * skala && punkt.x < 676.00 * skala))
                    {
                        points+=4;
                    }
                    //2 punkty
-                   else if ((punkt.y > 5.00 * skala && punkt.y < 774.00 * skala) && (punkt.x > 6.00 * skala && punkt.x < 774.00 * skala))
+                   else if ((punkt.y  + 100 > 5.00 * skala && punkt.y  + 100 < 774.00 * skala) && (punkt.x > 6.00 * skala && punkt.x < 774.00 * skala))
                    {
                        points+=2;
                    }
 
-//                   System.out.println("KOORDYNATY X: " +punkt.x);
-//                   System.out.println("KOORDYNATY Y: " +punkt.y);
+//                   System.out.println("KOORDYNATY X: " + (punkt.x * skala));
+//                   System.out.println("KOORDYNATY Y: " + (punkt.y * skala));
 //                   String punktX = punkt.x  +"\r\n" ;
 
 //                   try {
@@ -193,6 +195,8 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
                {
                    try {
                        fileOutputStream.write(Integer.toString(points).getBytes());
+//                       fileOutputStream.write(punkty.getBytes());
+//                       fileOutputStream.write(punktx.getBytes());
                        fileOutputStream.close();
                    } catch (IOException e) {
                        e.printStackTrace();
