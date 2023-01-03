@@ -70,7 +70,7 @@ public class ActivitySummary extends AppCompatActivity {
 //        Toast.makeText(getApplicationContext(), variables[0] + " " + variables[1], Toast.LENGTH_LONG).show();
         //Zapis do historii
 
-        String[] var = {variables[0] + " " + variables[1], datax.toString(), new SimpleDateFormat("dd-MM-yyy", Locale.getDefault()).format(new Date())};
+        String[] var = {variables[0] + " " + variables[1], datax.toString(), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date())};
 
         String file = "history";
 

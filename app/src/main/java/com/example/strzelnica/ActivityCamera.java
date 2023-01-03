@@ -45,7 +45,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     Mat src;
 //    Mat mrgba;
     MediaPlayer player;
-    int licznik =3;
+    int licznik = 3;
     FileOutputStream fileOutputStream = null;
     int points = 0;
 //    Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
@@ -142,10 +142,10 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 //           Point punkt = mmG.maxLoc;
         String punktx = String.valueOf(punkt.x * skala);
         String punkty = String.valueOf(punkt.y * skala);
-//           if(punkt.x > 100.0 && punkt.x < 100+h)
-//           {
-               if(licznik < 3)
-               {
+           if(punkt.x > 100.0 && punkt.x < 100+h)
+           {
+//               if(licznik < 3)
+//               {
                    Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
                    try {
 
