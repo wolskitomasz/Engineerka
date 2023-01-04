@@ -3,10 +3,13 @@ package com.example.strzelnica;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 
 public class ActivityHistory extends AppCompatActivity {
     ArrayList <String> list = new ArrayList<String>();
+    Button buttonMain = findViewById(R.id.button4);
 
 
     @Override
@@ -109,5 +113,11 @@ public class ActivityHistory extends AppCompatActivity {
             tableRow.addView(tv13);
             tableLayout.addView(tableRow);
         }
+        buttonMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityHistory.this, ActivityStart.class));
+            }
+        });
     }
 }
