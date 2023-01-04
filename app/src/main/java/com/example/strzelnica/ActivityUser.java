@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -33,7 +32,6 @@ public class ActivityUser extends AppCompatActivity {
                 datax2.append(readString);
                 readString = buffreader.readLine ( ) ;
             }
-
             isr.close ( ) ;
         } catch ( IOException ioe ) {
             ioe.printStackTrace ( ) ;
@@ -41,19 +39,15 @@ public class ActivityUser extends AppCompatActivity {
 
         Button buttonGuest = findViewById(R.id.buttonGuest);
         Button buttonLogin = findViewById(R.id.buttonLogin);
-       // TextView textView = findViewById(R.id.textView);
 
         //zmiana jezyka
         if(datax2.toString().equals("Polski"))
         {
-         //   textView.setText("UŻYTKOWNIK");
             buttonGuest.setText("GOŚĆ");
             buttonLogin.setText("ZALOGUJ");
-
         }
         else
         {
-           // textView.setText("USER");
             buttonGuest.setText("GUEST");
             buttonLogin.setText("LOG IN");
         }
@@ -78,6 +72,5 @@ public class ActivityUser extends AppCompatActivity {
                 }
             }
         });
-
     }
 }

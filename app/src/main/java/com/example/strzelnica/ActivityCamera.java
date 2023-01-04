@@ -5,12 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Looper;
+
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.slider.Slider;
 
@@ -26,14 +22,12 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 import static xdroid.toaster.Toaster.toast;
-import static xdroid.toaster.Toaster.toastLong;
-import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+
 
 public class ActivityCamera extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
 
@@ -42,14 +36,11 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     Mat mat1, mat2;
     Scalar scalarLow, scalarHigh;
     Mat src;
-//    Mat mrgba;
     MediaPlayer player;
-    int licznik =0;
+
     FileOutputStream fileOutputStream = null;
-    CountDownTimer countDownTimer=null;
-    //  TextView mTextField = findViewById(R.id.textView11);
-    //final MediaPlayer mp = MediaPlayer.create(this, R.raw.sample);
-//    TextView textView = findViewById(R.id.textView);
+    int points = 0;
+    int counter = 0;
 
 
 
@@ -81,22 +72,20 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
         File dir = getFilesDir();
         File file = new File(dir, "punkty");
-        boolean deleted = file.delete();
+        file.delete();
         try {
             fileOutputStream = openFileOutput("punkty", MODE_APPEND);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        javaCameraView = findViewById(R.id.javaCameraView);
+        javaCameraView = (JavaCameraView) findViewById(R.id.javaCameraView);
 
         javaCameraView.setCameraIndex(0);
 
         scalarLow = new Scalar(136,87,111);
         scalarHigh = new Scalar(180,255,255);
 
-
-//        javaCameraView.setVisibility(SurfaceView.VISIBLE);
         javaCameraView.setCvCameraViewListener(ActivityCamera.this);
         javaCameraView.enableView();
 
@@ -117,73 +106,71 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-//otwarcie pliku
 
-//        rysowanie kwadratu
-//        mrgba = inputFrame.rgba();
-//        int w = mrgba.width();
-//        int h = mrgba.height();
-//        int w_rect = w*3/4; // or 640
-//        int h_rect = h*3/4; // or 480
+        src = inputFrame.rgba();
+        int w = src.width();
+        int h = src.height();
+        int w_rect = w * 3 / 4; // or 640
+        int h_rect = h * 3 / 4; // or 480
 
-//        Imgproc.rectangle(mrgba, new Point( (w-w_rect)/2, (h-h_rect)/2 ), new Point(
-//                        (w+w_rect)/2, (h+h_rect)/2 ), new Scalar( 255, 0, 0 ), 5);
+        int scale = w / 774;
 
-            src = inputFrame.rgba();
+        Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV);
 
-            Imgproc.cvtColor(inputFrame.rgba(), mat1, Imgproc.COLOR_BGR2HSV) ;
+        Core.inRange(mat1, scalarLow, scalarHigh, mat2);
+        Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
 
-            Core.inRange(mat1, scalarLow, scalarHigh, mat2);
+        Point point = mmG.maxLoc;
 
-            Core.MinMaxLocResult mmG = Core.minMaxLoc(mat2);
+        if (point.x > 100.0 && point.x < 100 + h) {
+            if (counter < 3) {
+                Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
+                try {
 
-
-           Point punkt = mmG.maxLoc;
-
-           if(punkt.x > 200.0 && punkt.x < 800.0)
-           {
-               if(licznik < 3)
-               {
-                   Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
-                   try {
-
-                       Thread.sleep(4000);
-                   } catch (InterruptedException e) {
-                       e.printStackTrace();
-                   }
-                   play();
-                   System.out.println("KOORDYNATY X: " +punkt.x);
-                   System.out.println("KOORDYNATY Y: " +punkt.y);
-                   String punktX = String.valueOf(punkt.x)  +"\r\n" ;
-                   licznik++;
-                   setText();
-                   try {
-                       fileOutputStream.write(punktX.getBytes());
-                   } catch (IOException e) {
-                       e.printStackTrace();
-                   }
+                    Thread.sleep(4000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-               if (licznik == 3)
-               {
-                   try {
-                       fileOutputStream.close();
-                   } catch (IOException e) {
-                       e.printStackTrace();
-                   }
-                   startActivity(new Intent(ActivityCamera.this, ActivitySummary.class));
+                play();
+                counter++;
+                setText();
 
-               }
+                //10 punktow
+                if ((point.y + 100 > 292.00 * scale && point.y + 100 < 486.00 * scale) && (point.x > 292.00 * scale && point.x < 486.00 * scale)) {
+                    points += 10;
 
+                }
+                //8 punktów
+                else if ((point.y + 100 > 196.00 * scale && point.y + 100 < 581.00 * scale) && (point.x > 197.00 * scale && point.x < 582.00 * scale)) {
+                    points += 8;
+                }
+                //4 punkty
+                else if ((point.y + 100 > 102.00 * scale && point.y + 100 < 677.00 * scale) && (point.x > 431.00 * scale && point.x < 676.00 * scale)) {
+                    points += 4;
+                }
+                //2 punkty
+                else if ((point.y + 100 > 5.00 * scale && point.y + 100 < 774.00 * scale) && (point.x > 6.00 * scale && point.x < 774.00 * scale)) {
+                    points += 2;
+                }
+            }
+            if (counter == 3) {
+                try {
+                    fileOutputStream.write(Integer.toString(points).getBytes());
+                    fileOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(ActivityCamera.this, ActivitySummary.class));
+            }
+            slider = findViewById(R.id.slider);
+            int brightness = (int) slider.getValue();
 
-           }
+            src.convertTo(src, -1, 1, brightness);
 
-        slider = findViewById(R.id.slider);
-        int brightness = (int) slider.getValue();
-
-        src.convertTo(src, -1, 1, brightness);
+            Imgproc.rectangle(src, new Point(100, 0), new Point(((h + h) / 2) + 100, (h + h) / 2), new Scalar(255, 0, 0), 5);
+        }
         return src;
     }
-
 
 
     @Override
@@ -239,8 +226,6 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     }
     public void setText()
     {
-//        textView.setText("Pozostało "+ (10-licznik2) + "strzałów.");
-       // Toast.makeText(getApplicationContext(), Integer.toString(licznik), Toast.LENGTH_LONG).show();
-        toast("Pozostało " +Integer.toString(3-licznik)+" strzałów!");
+        toast("Pozostało " +Integer.toString(3-counter)+" strzałów!");
     }
 }

@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 datax.append(readString);
                 readString = buffreader.readLine ( ) ;
             }
-
             isr.close ( ) ;
         } catch ( IOException ioe ) {
             ioe.printStackTrace ( ) ;

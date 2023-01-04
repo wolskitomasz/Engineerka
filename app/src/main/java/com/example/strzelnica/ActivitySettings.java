@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,9 +29,8 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-
-
         this.setTitle("STRZELNICA");
+
         //Utworzenie instancji dla przycisku
         Button button = findViewById(R.id.buttonSave);
         Button button2 = findViewById(R.id.button);
@@ -52,7 +49,6 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
                 datax.append(readString);
                 readString = buffreader.readLine ( ) ;
             }
-
             isr.close ( ) ;
         } catch ( IOException ioe ) {
             ioe.printStackTrace ( ) ;
@@ -125,6 +121,5 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }

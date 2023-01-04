@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -35,7 +34,6 @@ public class ActivityPrepare extends AppCompatActivity {
         TextView textView3 = findViewById(R.id.textView12);
         TextView textView4 = findViewById(R.id.textView5);
 
-
         //Sprawdzenie języka i jego ewentualna zmiana
         StringBuffer datax2 = new StringBuffer("");
         try {
@@ -48,7 +46,6 @@ public class ActivityPrepare extends AppCompatActivity {
                 datax2.append(readString);
                 readString = buffreader.readLine ( ) ;
             }
-
             isr.close ( ) ;
         } catch ( IOException ioe ) {
             ioe.printStackTrace ( ) ;
@@ -89,7 +86,6 @@ public class ActivityPrepare extends AppCompatActivity {
                 variables[i] = readString;
                 i++;
             }
-
             isr.close ( ) ;
         } catch ( IOException ioe ) {
             ioe.printStackTrace ( ) ;
