@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1F344B"
     tools:context=".ActivitySummary">
 
     <TextView
@@ -16,6 +17,7 @@
         android:layout_marginBottom="358dp"
         android:text="0"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="96sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,7 +33,9 @@
         android:layout_marginEnd="161dp"
         android:layout_marginBottom="15dp"
         android:text="Twoje punkty :"
+        android:textColor="#FFFFFF"
         android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,9 +49,11 @@
         android:layout_marginTop="37dp"
         android:layout_marginEnd="131dp"
         android:layout_marginBottom="171dp"
+        android:backgroundTint="#FEC331"
         android:text="MENU"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
+        app:cornerRadius="75px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

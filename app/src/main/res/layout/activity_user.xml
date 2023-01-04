@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1F344B"
     tools:context=".ActivityUser">
 
     <TextView
@@ -12,8 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
         android:text="Zaloguj się!"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="220dp"
         android:text="Jeśli nie posiadasz konta zagraj jako gość"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,20 +54,24 @@
             android:layout_height="125dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:backgroundTint="#63087E00"
+            android:backgroundTint="#FEC331"
             android:fontFamily="sans-serif-black"
             android:text="GOŚĆ"
-            android:textSize="20dp" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:cornerRadius="75px" />
 
         <Button
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="125dp"
             android:layout_weight="1"
-            android:backgroundTint="#86214CE8"
+            android:backgroundTint="#FC5B19"
             android:fontFamily="sans-serif-black"
             android:text="ZALOGUJ"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:cornerRadius="75px" />
 
     </LinearLayout>
 

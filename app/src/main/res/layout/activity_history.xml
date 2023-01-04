@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1F344B"
     tools:context=".ActivityHistory">
 
     <TextView
@@ -15,7 +16,9 @@
         android:layout_marginEnd="126dp"
         android:gravity="center"
         android:text="HISTORIA"
+        android:textColor="#FFFFFF"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -81,9 +84,11 @@
         android:layout_marginTop="31dp"
         android:layout_marginEnd="159dp"
         android:layout_marginBottom="20dp"
+        android:backgroundTint="#FEC331"
         android:text="MENU"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
+        app:cornerRadius="75px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

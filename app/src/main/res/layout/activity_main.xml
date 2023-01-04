@@ -13,6 +13,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        android:background="#1F344B"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,11 +43,12 @@
                 android:layout_height="150dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:backgroundTint="#704CAF50"
+                android:backgroundTint="#FC5B19"
                 android:fontFamily="sans-serif-black"
                 android:insetTop="6dp"
                 android:text="start"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:cornerRadius="75px" />
 
             <Button
                 android:id="@+id/buttonHistory"
@@ -54,11 +56,12 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:backgroundTint="#836E6A6A"
+                android:backgroundTint="#6C74E1"
                 android:fontFamily="sans-serif-black"
                 android:insetTop="6dp"
                 android:text="historia"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:cornerRadius="75px" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,11 +78,12 @@
                 android:layout_height="150dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:backgroundTint="#863F51B5"
+                android:backgroundTint="#FEC331"
                 android:fontFamily="sans-serif-black"
                 android:insetTop="6dp"
                 android:text="ustawienia"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:cornerRadius="75px" />
 
             <Button
                 android:id="@+id/buttonClose"
@@ -87,11 +91,12 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:backgroundTint="#63FF0000"
+                android:backgroundTint="#FC1919"
                 android:fontFamily="sans-serif-black"
                 android:insetTop="6dp"
                 android:text="wyjście"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:cornerRadius="75px" />
 
         </LinearLayout>
 
