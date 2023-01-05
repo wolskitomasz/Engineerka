@@ -21,13 +21,20 @@ import java.util.ArrayList;
 
 public class ActivityHistory extends AppCompatActivity {
     ArrayList <String> list = new ArrayList<String>();
-    Button buttonMain = findViewById(R.id.button4);
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        Button button = findViewById(R.id.button4);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityHistory.this, MainActivity.class));
+            }
+        });
         TableLayout tableLayout = findViewById(R.id.tableLayout);
         //Utworzenie wiersza nagłówkowego
         TableRow tb = new TableRow(this);
@@ -104,11 +111,6 @@ public class ActivityHistory extends AppCompatActivity {
             tableRow.addView(tv13);
             tableLayout.addView(tableRow);
         }
-        buttonMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ActivityHistory.this, ActivityStart.class));
-            }
-        });
+
     }
 }

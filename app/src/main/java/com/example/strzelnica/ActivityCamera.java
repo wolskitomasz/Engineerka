@@ -162,13 +162,15 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
                 }
                 startActivity(new Intent(ActivityCamera.this, ActivitySummary.class));
             }
-            slider = findViewById(R.id.slider);
-            int brightness = (int) slider.getValue();
 
-            src.convertTo(src, -1, 1, brightness);
 
-            Imgproc.rectangle(src, new Point(100, 0), new Point(((h + h) / 2) + 100, (h + h) / 2), new Scalar(255, 0, 0), 5);
         }
+        slider = findViewById(R.id.slider);
+        int brightness = (int) slider.getValue();
+
+        src.convertTo(src, -1, 1, brightness);
+        Imgproc.rectangle(src, new Point(100, 0), new Point(((h + h) / 2) + 100, (h + h) / 2), new Scalar(255, 0, 0), 5);
+
         return src;
     }
 

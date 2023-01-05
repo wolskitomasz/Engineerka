@@ -91,7 +91,7 @@ public class ActivitySummary extends AppCompatActivity {
         buttonMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ActivitySummary.this, ActivityStart.class));
+                startActivity(new Intent(ActivitySummary.this, MainActivity.class));
             }
         });
     }
