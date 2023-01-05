@@ -2,19 +2,16 @@ package com.example.strzelnica;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.ViewGroup;
+import android.view.View;
+
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.material.tabs.TabLayout;
-
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -24,6 +21,7 @@ import java.util.ArrayList;
 
 public class ActivityHistory extends AppCompatActivity {
     ArrayList <String> list = new ArrayList<String>();
+    Button buttonMain = findViewById(R.id.button4);
 
 
     @Override
@@ -70,8 +68,6 @@ public class ActivityHistory extends AppCompatActivity {
                 readString = buffreader.readLine ( );
                 list.add(readString);
             }
-
-
             isr.close ( ) ;
         } catch ( IOException ioe ) {
             ioe.printStackTrace ( ) ;
@@ -81,7 +77,6 @@ public class ActivityHistory extends AppCompatActivity {
         {
             game++;
         }
-//        game = game / 3;
 
         for(int i=0; i<game; i=i+3)
         {
@@ -109,5 +104,11 @@ public class ActivityHistory extends AppCompatActivity {
             tableRow.addView(tv13);
             tableLayout.addView(tableRow);
         }
+        buttonMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityHistory.this, ActivityStart.class));
+            }
+        });
     }
 }

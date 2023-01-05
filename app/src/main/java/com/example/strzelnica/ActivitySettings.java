@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -31,11 +29,11 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-
-
         this.setTitle("STRZELNICA");
+
         //Utworzenie instancji dla przycisku
         Button button = findViewById(R.id.buttonSave);
+        Button button2 = findViewById(R.id.button);
         TextView textView = findViewById(R.id.textViewTitle);
         TextView textView2 = findViewById(R.id.textView4);
 
@@ -51,7 +49,6 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
                 datax.append(readString);
                 readString = buffreader.readLine ( ) ;
             }
-
             isr.close ( ) ;
         } catch ( IOException ioe ) {
             ioe.printStackTrace ( ) ;
@@ -60,6 +57,7 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         if(datax.toString().equals("Polski"))
         {
             button.setText("ZAPISZ");
+            button2.setText("WRÓĆ");
             textView.setText("USTAWIENIA");
             textView2.setText("Język");
             language[0] = "Polski";
@@ -68,6 +66,7 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         else
         {
             button.setText("SAVE");
+            button2.setText("BACK");
             textView.setText("SETTINGS");
             textView2.setText("Language");
             language[0] = "English";
@@ -83,6 +82,12 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
         spin.setAdapter(aa);
 
         button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivitySettings.this, MainActivity.class));
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ActivitySettings.this, MainActivity.class));
@@ -116,6 +121,5 @@ public class ActivitySettings extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }

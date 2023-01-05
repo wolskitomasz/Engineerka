@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.setTitle("STRZELNICA");
+        this.setTitle("LASER PISTOLS");
 
         //Utworzenie instancji dla przycisków
         Button buttonStart = findViewById(R.id.buttonStart);
@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 datax.append(readString);
                 readString = buffreader.readLine ( ) ;
             }
-
             isr.close ( ) ;
         } catch ( IOException ioe ) {
             ioe.printStackTrace ( ) ;

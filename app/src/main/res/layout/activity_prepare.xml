@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1F344B"
     tools:context=".ActivityPrepare">
 
     <LinearLayout
@@ -25,8 +26,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="PRZYGOTOWANIE"
-            android:textColor="#000000"
-            android:textSize="36sp" />
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView6"
@@ -35,7 +37,7 @@
             android:layout_marginTop="50dp"
             android:gravity="center"
             android:text="Imię"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -44,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="TextView"
+            android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
         <TextView
@@ -53,7 +55,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Nazwkisko"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -62,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="TextView"
+            android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
         <TextView
@@ -71,7 +73,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Wiek"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -80,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="TextView"
+            android:textColor="#FFFFFF"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -97,9 +99,11 @@
                 android:layout_height="125dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:backgroundTint="#75B10303"
+                android:backgroundTint="#FC5B19"
                 android:text="POPRAW"
-                android:textSize="18sp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="75px"
                 tools:ignore="DuplicateSpeakableTextCheck" />
 
             <Button
@@ -107,10 +111,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="125dp"
                 android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:backgroundTint="#722BB304"
+                android:layout_weight="1.5"
+                android:backgroundTint="#FEC331"
                 android:text="START"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="75px" />
         </LinearLayout>
 
     </LinearLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1F344B"
     tools:context=".ActivityHistory">
 
     <TextView
@@ -15,62 +16,83 @@
         android:layout_marginEnd="126dp"
         android:gravity="center"
         android:text="HISTORIA"
+        android:textColor="#FFFFFF"
         android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout"
+        android:layout_width="411dp"
+        android:layout_height="563dp"
+        android:layout_marginBottom="168dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
+            android:layout_height="558dp"
             android:layout_marginTop="50dp">
-<!--                <TableRow>-->
+            <!--                <TableRow>-->
 
-<!--                    <TextView-->
-<!--                        android:layout_margin="2dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:background="#999999"-->
-<!--                        android:gravity="center"-->
-<!--                        android:padding="3dp"-->
-<!--                        android:text="Imię i nazwisko"-->
-<!--                        android:textColor="#0D47A1"-->
-<!--                        android:textStyle="bold" />-->
+            <!--                    <TextView-->
+            <!--                        android:layout_margin="2dp"-->
+            <!--                        android:layout_weight="1"-->
+            <!--                        android:background="#999999"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:padding="3dp"-->
+            <!--                        android:text="Imię i nazwisko"-->
+            <!--                        android:textColor="#0D47A1"-->
+            <!--                        android:textStyle="bold" />-->
 
-<!--                    <TextView-->
-<!--                        android:layout_margin="2dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:background="#999999"-->
-<!--                        android:gravity="center"-->
-<!--                        android:padding="3dp"-->
-<!--                        android:text="Punkty"-->
-<!--                        android:textColor="#0D47A1"-->
-<!--                        android:textStyle="bold" />-->
+            <!--                    <TextView-->
+            <!--                        android:layout_margin="2dp"-->
+            <!--                        android:layout_weight="1"-->
+            <!--                        android:background="#999999"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:padding="3dp"-->
+            <!--                        android:text="Punkty"-->
+            <!--                        android:textColor="#0D47A1"-->
+            <!--                        android:textStyle="bold" />-->
 
-<!--                    <TextView-->
-<!--                        android:layout_margin="2dp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:background="#999999"-->
-<!--                        android:gravity="center"-->
-<!--                        android:padding="3dp"-->
-<!--                        android:text="Data"-->
-<!--                        android:textColor="#0D47A1"-->
-<!--                        android:textStyle="bold" />-->
-<!--                </TableRow>-->
+            <!--                    <TextView-->
+            <!--                        android:layout_margin="2dp"-->
+            <!--                        android:layout_weight="1"-->
+            <!--                        android:background="#999999"-->
+            <!--                        android:gravity="center"-->
+            <!--                        android:padding="3dp"-->
+            <!--                        android:text="Data"-->
+            <!--                        android:textColor="#0D47A1"-->
+            <!--                        android:textStyle="bold" />-->
+            <!--                </TableRow>-->
         </TableLayout>
 
 
-
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="159dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#FEC331"
+        android:text="MENU"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="75px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

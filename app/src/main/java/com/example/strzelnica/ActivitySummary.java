@@ -2,9 +2,11 @@ package com.example.strzelnica;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -25,6 +27,7 @@ public class ActivitySummary extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.textView);
         String[] variables = new String[3];
+        Button buttonMain = findViewById(R.id.button3);
 
         //wczytanie ilości punktów
         StringBuffer datax = new StringBuffer("");
@@ -38,7 +41,6 @@ public class ActivitySummary extends AppCompatActivity {
                 datax.append(readString);
                 readString = buffreader.readLine ( ) ;
             }
-
             isr.close ( ) ;
         } catch ( IOException ioe ) {
             ioe.printStackTrace ( ) ;
@@ -66,10 +68,7 @@ public class ActivitySummary extends AppCompatActivity {
         } catch ( IOException ioe ) {
             ioe.printStackTrace ( ) ;
         }
-
-//        Toast.makeText(getApplicationContext(), variables[0] + " " + variables[1], Toast.LENGTH_LONG).show();
         //Zapis do historii
-
         String[] var = {variables[0] + " " + variables[1], datax.toString(), new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date())};
 
         String file = "history";
@@ -84,11 +83,16 @@ public class ActivitySummary extends AppCompatActivity {
             for(int i = 0; i<3; i++){
                 fileOutputStream.write(var[i].getBytes());
                 fileOutputStream.write("\r\n".getBytes());
-
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        buttonMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivitySummary.this, ActivityStart.class));
+            }
+        });
     }
 }

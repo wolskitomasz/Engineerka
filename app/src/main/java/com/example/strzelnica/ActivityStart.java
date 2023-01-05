@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,11 +18,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ActivityStart extends AppCompatActivity {
 
@@ -58,7 +52,6 @@ public class ActivityStart extends AppCompatActivity {
                 datax.append(readString);
                 readString = buffreader.readLine ( ) ;
             }
-
             isr.close ( ) ;
         } catch ( IOException ioe ) {
             ioe.printStackTrace ( ) ;
@@ -117,7 +110,6 @@ public class ActivityStart extends AppCompatActivity {
             editTextAge.setText(variables[2]);
         }
 
-
         //Utworzenie pliku tekstowego z danymi osoby rozpoczynającej grę
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +117,6 @@ public class ActivityStart extends AppCompatActivity {
                 String[] variables = {editTextName.getText().toString(), editTextSurname.getText().toString(), editTextAge.getText().toString()};
 
                 String file = "player";
-
 
                 FileOutputStream fileOutputStream = null;
                 try {
@@ -144,7 +135,6 @@ public class ActivityStart extends AppCompatActivity {
                             fileOutputStream.write(variables[i].getBytes());
                             fileOutputStream.write("\r\n".getBytes());
                         }
-
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -158,8 +148,5 @@ public class ActivityStart extends AppCompatActivity {
                 startActivity(new Intent(ActivityStart.this, ActivityPrepare.class));
             }
         });
-
-
-
     }
 }
