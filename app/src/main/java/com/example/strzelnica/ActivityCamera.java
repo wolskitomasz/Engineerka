@@ -23,10 +23,13 @@ import org.opencv.imgproc.Imgproc;
 
 import static xdroid.toaster.Toaster.toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 public class ActivityCamera extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
@@ -42,7 +45,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     int points = 0;
     int counter = 0;
 
-
+    StringBuffer datax;
 
     BaseLoaderCallback baseLoaderCallback = new BaseLoaderCallback(ActivityCamera.this) {
         @Override
@@ -68,6 +71,23 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
+        datax = new StringBuffer("");
+        try {
+            FileInputStream fIn = openFileInput ( "jezyk" ) ;
+            InputStreamReader isr = new InputStreamReader ( fIn ) ;
+            BufferedReader buffreader = new BufferedReader ( isr ) ;
+
+            String readString = buffreader.readLine ( ) ;
+            while ( readString != null ) {
+                datax.append(readString);
+                readString = buffreader.readLine ( ) ;
+            }
+            isr.close ( ) ;
+        } catch ( IOException ioe ) {
+            ioe.printStackTrace ( ) ;
+        }
+
         OpenCVLoader.initDebug();
 
         File dir = getFilesDir();
@@ -123,7 +143,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
         Point point = mmG.maxLoc;
 
         if (point.x > 100.0 && point.x < 100 + h) {
-            if (counter < 3) {
+            if (counter < 10) {
                 Imgproc.circle(src, mmG.maxLoc, 25, new Scalar(0, 0, 255), 5, Imgproc.LINE_AA);
                 try {
 
@@ -134,6 +154,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
                 play();
                 counter++;
                 setText();
+
 
                 //10 punktow
                 if ((point.y + 100 > 292.00 * scale && point.y + 100 < 486.00 * scale) && (point.x > 292.00 * scale && point.x < 486.00 * scale)) {
@@ -153,7 +174,7 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
                     points += 2;
                 }
             }
-            if (counter == 3) {
+            if (counter == 10) {
                 try {
                     fileOutputStream.write(Integer.toString(points).getBytes());
                     fileOutputStream.close();
@@ -228,6 +249,14 @@ public class ActivityCamera extends AppCompatActivity implements CameraBridgeVie
     }
     public void setText()
     {
-        toast("Pozostało " +Integer.toString(3-counter)+" strzałów!");
+        if(datax.toString().equals("Polski"))
+        {
+            toast("Pozostała ilość strzałów: " +Integer.toString(10-counter));
+        }
+        else
+        {
+            toast("Shots left: " +Integer.toString(10-counter));
+        }
+
     }
 }

@@ -5,17 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1F344B"
+    android:textAlignment="center"
     tools:context=".ActivitySettings">
 
-    <TextView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
         android:gravity="left"
-        android:textColor="#FF0000"
         android:padding="5dip"
-        />
+        android:textColor="#FF0000"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="409dp"
@@ -63,7 +62,10 @@
                 android:layout_width="107dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:minHeight="48dp" />
+                android:backgroundTint="#6C74E1"
+                android:foregroundTint="#FF0303"
+                android:minHeight="48dp"
+                android:popupBackground="#6C74E1" />
 
         </LinearLayout>
 

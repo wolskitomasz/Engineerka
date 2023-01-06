@@ -30,6 +30,7 @@ public class ActivityStart extends AppCompatActivity {
 
         //Utworzenie instancji dla przycisku i pól tekstowych
         Button buttonNext = findViewById(R.id.buttonNext);
+        Button buttonPrevious = findViewById(R.id.buttonPrevious);
 
         EditText editTextName = findViewById(R.id.editTextName);
         EditText editTextSurname = findViewById(R.id.editTextSurname);
@@ -63,6 +64,7 @@ public class ActivityStart extends AppCompatActivity {
             txtSur.setText("Nazwisko");
             txtAge.setText("Wiek");
             buttonNext.setText("ZAPISZ");
+            buttonPrevious.setText("WRÓC");
             txtLabel.setText("PRZYGOTOWANIE");
             editTextName.setText("IMIĘ");
             editTextSurname.setText("NAZWISKO");
@@ -74,6 +76,7 @@ public class ActivityStart extends AppCompatActivity {
             txtSur.setText("Surname");
             txtAge.setText("Age");
             buttonNext.setText("SAVE");
+            buttonPrevious.setText("BACK");
             txtLabel.setText("PREPARE");
             editTextName.setText("NAME");
             editTextSurname.setText("SURNAME");
@@ -146,6 +149,12 @@ public class ActivityStart extends AppCompatActivity {
                 }
 
                 startActivity(new Intent(ActivityStart.this, ActivityPrepare.class));
+            }
+        });
+        buttonPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ActivityStart.this, ActivityUser.class));
             }
         });
     }

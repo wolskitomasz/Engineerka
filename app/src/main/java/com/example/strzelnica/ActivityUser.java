@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -40,16 +41,23 @@ public class ActivityUser extends AppCompatActivity {
         Button buttonGuest = findViewById(R.id.buttonGuest);
         Button buttonLogin = findViewById(R.id.buttonLogin);
 
+        TextView textView = findViewById(R.id.textView11);
+        TextView textView2 = findViewById(R.id.textView13);
+
         //zmiana jezyka
         if(datax2.toString().equals("Polski"))
         {
             buttonGuest.setText("GOŚĆ");
             buttonLogin.setText("ZALOGUJ");
+            textView.setText("Zaloguj się!");
+            textView2.setText("Jeśli nie posiadasz konta zagraj jako gość");
         }
         else
         {
             buttonGuest.setText("GUEST");
             buttonLogin.setText("LOG IN");
+            textView.setText("LOG IN!");
+            textView2.setText("If you don't have account play as a guest");
         }
 
         buttonGuest.setOnClickListener(new View.OnClickListener() {
